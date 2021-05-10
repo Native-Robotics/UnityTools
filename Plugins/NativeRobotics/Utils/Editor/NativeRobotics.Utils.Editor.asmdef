@@ -1,0 +1,15 @@
+{
+    "name": "NativeRobotics.Utils.Editor",
+    "references": [
+        "GUID:2f9f2e1391d49ff49a124ec8a8915c85"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
