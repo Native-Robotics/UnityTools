@@ -9,7 +9,7 @@ namespace NativeRobotics.Utils.Editor
     public class RobotGeneratorWindow : OdinEditorWindow
     {
         [ShowInInspector, FolderPath]
-        private string savingPath = "Assets/Debug/Robot";
+        protected string savingPath = "Assets/Debug/Robot";
 
         [Header("Basic settings"), OnValueChanged("DOFChanged"), Range(1, 14), LabelText("DOF")]
         public int dof = 6;
