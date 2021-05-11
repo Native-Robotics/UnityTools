@@ -25,7 +25,7 @@ namespace NativeRobotics.Utils.Editor
             if (robotMesh == null) return;
 
             var assetPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(robotMesh);
-            savingPath = Path.GetDirectoryName(assetPath);
+            SavingPath = Path.GetDirectoryName(assetPath);
         }
 
         [Button(ButtonSizes.Large), PropertySpace(SpaceBefore = 20)]

@@ -9,12 +9,16 @@ namespace NativeRobotics.Utils.Editor
     public class RobotGeneratorWindow : OdinEditorWindow
     {
         [ShowInInspector, FolderPath]
-        protected string savingPath = "Assets/Debug/Robot";
+        private string savingPath = "Assets/Debug/Robot";
 
         [Header("Basic settings"), OnValueChanged("DOFChanged"), Range(1, 14), LabelText("DOF")]
         public int dof = 6;
 
-        protected virtual string SavingPath => savingPath;
+        protected virtual string SavingPath
+        {
+            get => savingPath;
+            set => savingPath = value;
+        }
 
         public virtual void DOFChanged()
         {
@@ -24,11 +28,10 @@ namespace NativeRobotics.Utils.Editor
         /// Saving robot prefab
         /// </summary>
         /// <param name="prefab">Reference to robot prefab</param>
-        /// <param name="savingPath">Target saving path</param>
         protected void SavePrefab(GameObject prefab)
         {
             var prefabName = $"{prefab.name}.prefab";
-            var path = Path.Combine(savingPath, prefabName);
+            var path = Path.Combine(SavingPath, prefabName);
             PrefabUtility.SaveAsPrefabAssetAndConnect(prefab, path, InteractionMode.AutomatedAction);
         }
 
