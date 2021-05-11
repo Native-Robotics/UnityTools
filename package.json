@@ -2,7 +2,7 @@
   "name": "com.nativerobotics.tools",
   "version": "1.5.1",
   "displayName": "Native Robotics Tools",
-  "description": "Set of in-house and purchased tools used in Native Robotics' Unity projects.",
+  "description": "Set of in-house and purchased tools used in Native Robotics' Unity projects. Available at <a href="https://github.com/Native-Robotics/UnityTools.git">GitHub</a>",
   "unity": "2019.4",
   "hideInEditor": false
 }
