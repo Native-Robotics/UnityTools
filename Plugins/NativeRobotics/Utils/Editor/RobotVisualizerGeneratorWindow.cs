@@ -52,8 +52,8 @@ namespace NativeRobotics.Utils.Editor
                 // Adding Mesh Robot View component
                 var view = robotMeshInstance.AddComponent<MeshRobotView>();
 
-                var signs = new float[joints.Length];
-                for (var i = 0; i < joints.Length; i++)
+                var signs = new float[joints.Count];
+                for (var i = 0; i < joints.Count; i++)
                 {
                     signs[i] = 1;
                 }
