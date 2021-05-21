@@ -51,15 +51,14 @@ namespace NativeRobotics.Utils.Editor
 
                 // Adding Mesh Robot View component
                 var view = robotMeshInstance.AddComponent<MeshRobotView>();
-                view.Init(joints.ToArray(), new int[dof], new float[dof]);
-                
-                // var visualizer = robotMeshInstance.AddComponent<RobotVisualizer>();
-                // visualizer.dof = dof;
-                // visualizer.joints = joints.Count == 0 ? new Transform[dof] : joints.ToArray();
-                // visualizer.offsets = new float[dof];
-                // visualizer.signs = new int[dof];
-                // visualizer.useMeshRobot = true;
-                // visualizer.useStabRobot = false;
+
+                var signs = new float[joints.Length];
+                for (var i = 0; i < joints.Length; i++)
+                {
+                    signs[i] = 1;
+                }
+
+                view.Init(joints.ToArray(), signs, new float[dof]);
 
                 SavePrefab(robotMeshInstance);
             }

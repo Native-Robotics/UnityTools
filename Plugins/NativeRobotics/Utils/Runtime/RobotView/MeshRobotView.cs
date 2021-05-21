@@ -33,15 +33,7 @@ namespace NativeRobotics.Utils.RobotView
             this.joints = joints;
             this.signs = signs;
             this.offsets = offsets;
-
             debugState = new float[joints.Length];
-
-            for (var i = 0; i < joints.Length; i++)
-            {
-                signs[i] = 1;
-                offsets[i] = 0;
-                debugState[i] = 0;
-            }
         }
 
         public void UpdateView(float[] state)
