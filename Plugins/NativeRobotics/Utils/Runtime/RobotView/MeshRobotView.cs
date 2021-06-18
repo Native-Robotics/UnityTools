@@ -36,7 +36,7 @@ namespace NativeRobotics.Utils.RobotView
             debugState = new float[joints.Length];
         }
 
-        public void UpdateView(float[] state)
+        public virtual void UpdateView(float[] state)
         {
             for (var i = 0; i < joints.Length; i++)
             {
