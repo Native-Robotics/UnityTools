@@ -20,7 +20,7 @@ namespace NativeRobotics.Utils.RobotView
         [Header("Debug"), SerializeField, Range(-Mathf.PI, Mathf.PI), OnValueChanged("DebugStateChanged", true)]
         public float[] debugState;
 
-        private void DebugStateChanged()
+        protected void DebugStateChanged()
         {
             if (debugState.Length == joints.Length)
             {
