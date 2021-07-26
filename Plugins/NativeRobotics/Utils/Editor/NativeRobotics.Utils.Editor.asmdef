@@ -1,7 +1,8 @@
 {
     "name": "NativeRobotics.Utils.Editor",
     "references": [
-        "GUID:2f9f2e1391d49ff49a124ec8a8915c85"
+        "GUID:2f9f2e1391d49ff49a124ec8a8915c85",
+        "GUID:1abef377c5b6de44e9275a42caad8f31"
     ],
     "includePlatforms": [
         "Editor"
