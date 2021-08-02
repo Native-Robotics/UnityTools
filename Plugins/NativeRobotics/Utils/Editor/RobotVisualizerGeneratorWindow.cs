@@ -9,6 +9,14 @@ namespace NativeRobotics.Utils.Editor
 {
     public class RobotVisualizerGeneratorWindow : RobotGeneratorWindow
     {
+        [ShowInInspector, FolderPath]
+        protected string savingPath = "Assets/Debug/Robot";
+
+        protected override string SavingPath
+        {
+            get => savingPath;
+        }
+
         [MenuItem("Tools/Native Robotics/Robot Importer/Visualizer Prefab Generator")]
         private static void OpenWindow()
         {
@@ -25,7 +33,7 @@ namespace NativeRobotics.Utils.Editor
             if (robotMesh == null) return;
 
             var assetPath = PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(robotMesh);
-            SavingPath = Path.GetDirectoryName(assetPath);
+            savingPath = Path.GetDirectoryName(assetPath);
         }
 
         [Button(ButtonSizes.Large), PropertySpace(SpaceBefore = 20)]
@@ -35,7 +43,7 @@ namespace NativeRobotics.Utils.Editor
             {
                 var robotMeshInstance = Instantiate(robotMesh, Vector3.zero, Quaternion.identity);
                 var joints = RobotGeneratorMeshProcessor.ProcessMeshFBX(robotMeshInstance.transform, dof);
-                
+
                 // Adjusting prefab name
                 var meshName = robotMeshInstance.name;
 
@@ -46,7 +54,7 @@ namespace NativeRobotics.Utils.Editor
 
                 meshName = meshName.Replace(' ', '_');
                 meshName += "_Visualizer";
-                
+
                 robotMeshInstance.name = meshName;
 
                 // Adding Mesh Robot View component

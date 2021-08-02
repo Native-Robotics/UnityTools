@@ -6,19 +6,12 @@ using UnityEngine;
 
 namespace NativeRobotics.Utils.Editor
 {
-    public class RobotGeneratorWindow : OdinEditorWindow
+    public abstract class RobotGeneratorWindow : OdinEditorWindow
     {
-        [ShowInInspector, FolderPath]
-        protected string savingPath = "Assets/Debug/Robot";
-
         [Header("Basic settings"), OnValueChanged("DOFChanged"), Range(1, 14), LabelText("DOF")]
         public int dof = 6;
 
-        protected virtual string SavingPath
-        {
-            get => savingPath;
-            set => savingPath = value;
-        }
+        protected abstract string SavingPath { get; }
 
         public virtual void DOFChanged()
         {
