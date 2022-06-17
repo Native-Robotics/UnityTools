@@ -55,28 +55,28 @@ namespace NativeRobotics.Utils.Editor
 
         [AssetsOnly]
         [PreviewField(ObjectFieldAlignment.Left)]
-        [LabelText("Albedo:")]
+        [LabelText("AlbedoTransparency:")]
         [SuffixLabel("$aName", false)]
         public Texture a = null;
         private string aName => (a == null ? "-" : a.name);
 
         [AssetsOnly]
         [PreviewField(ObjectFieldAlignment.Left)]
-        [LabelText("Ambient Ocllusion")]
+        [LabelText("AO:")]
         [SuffixLabel("$aoName", false)]
         public Texture ao = null;
         private string aoName => (ao == null ? "-" : ao.name);
 
         [AssetsOnly]
         [PreviewField(ObjectFieldAlignment.Left)]
-        [LabelText("Metallic Smoothness:")]
+        [LabelText("MetallicSmoothness:")]
         [SuffixLabel("$msName", false)]
         public Texture ms = null;
         private string msName => (ms == null ? "-" : ms.name);
 
         [AssetsOnly]
         [PreviewField(ObjectFieldAlignment.Left)]
-        [LabelText("Normals:")]
+        [LabelText("Normal:")]
         [SuffixLabel("$nrName", false)]
         public Texture nr = null;
         private string nrName => (nr == null ? "-" : nr.name);
@@ -89,13 +89,13 @@ namespace NativeRobotics.Utils.Editor
         private string emName => (em == null ? "-" : em.name);
 
         [HorizontalGroup("Size", LabelWidth = 30), PropertySpace(20)]
-        [LabelText("A:")]
+        [LabelText("AT:")]
         public int aSize = RES_4K;
         [HorizontalGroup("Size", LabelWidth = 30), PropertySpace(20)]
         [LabelText("AO:")]
         public int aoSize = RES_4K;
         [HorizontalGroup("Size", LabelWidth = 30), PropertySpace(20)]
-        [LabelText("M/S:")]
+        [LabelText("MS:")]
         public int msSize = RES_4K;
         [HorizontalGroup("Size", LabelWidth = 30), PropertySpace(20)]
         [LabelText("NR:")]
@@ -105,7 +105,7 @@ namespace NativeRobotics.Utils.Editor
         public int emSize = RES_4K;
 
         [HorizontalGroup("Presets", LabelWidth = 20)]
-        [Button(ButtonSizes.Medium, Name = "4K"), PropertySpace(20)]
+        [Button(ButtonSizes.Medium, Name = "4096"), PropertySpace(20)]
         public void Set4K()
         {
             aSize = RES_4K;
@@ -116,7 +116,7 @@ namespace NativeRobotics.Utils.Editor
         }
 
         [HorizontalGroup("Presets", LabelWidth = 20), PropertySpace(20)]
-        [Button(ButtonSizes.Medium, Name = "2K")]
+        [Button(ButtonSizes.Medium, Name = "2048")]
         public void Set2K()
         {
             aSize = RES_4K / 2;
@@ -127,34 +127,36 @@ namespace NativeRobotics.Utils.Editor
         }
 
         [HorizontalGroup("Presets", LabelWidth = 20), PropertySpace(20)]
-        [Button(ButtonSizes.Medium, Name = "1K")]
+        [Button(ButtonSizes.Medium, Name = "1024")]
         public void Set1K()
         {
             aSize = RES_4K / 4;
             emSize = RES_4K / 16;
-            aoSize = RES_4K / 4;
+            aoSize = RES_4K / 16;
             msSize = RES_4K / 4;
             nrSize = RES_4K / 4;
         }
 
         [HorizontalGroup("Presets", LabelWidth = 20), PropertySpace(20)]
-        [Button(ButtonSizes.Medium, Name = "0.5K")]
+        [Button(ButtonSizes.Medium, Name = "512")]
         public void Set05K()
         {
             aSize = RES_4K / 8;
-            emSize = RES_4K / 16;
-            aoSize = RES_4K / 8;
+            emSize = RES_4K / 32;
+            aoSize = RES_4K / 32;
             msSize = RES_4K / 8;
             nrSize = RES_4K / 8;
         }
 
         [HorizontalGroup("Presets", LabelWidth = 20)]
-        [Button(ButtonSizes.Medium, Name = "Albedo+"), PropertySpace(20)]
+        [Button(ButtonSizes.Medium, Name = "256"), PropertySpace(20)]
         public void EnhanceAlbedo()
         {
-            aoSize = aSize / 2;
-            msSize = aSize / 2;
-            nrSize = aSize / 2;
+            aSize = RES_4K / 16;
+            emSize = RES_4K / 64;
+            aoSize = RES_4K / 64;
+            msSize = RES_4K / 16;
+            nrSize = RES_4K / 16;
         }
 
         [GUIColor(52.0f / 255, 199.0f / 255, 89.0f / 255)]
@@ -182,7 +184,7 @@ namespace NativeRobotics.Utils.Editor
                     case PlatformType.WebGL:
                         defaultFormat = TextureImporterFormat.DXT5;
                         ambientEmissionFormat = TextureImporterFormat.DXT1;
-                        normalsFormat = TextureImporterFormat.ARGB16;
+                        normalsFormat = TextureImporterFormat.DXT5;
                         break;
                     default:
                         defaultFormat = TextureImporterFormat.DXT5;
