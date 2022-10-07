@@ -172,9 +172,9 @@ namespace NativeRobotics.Utils.Editor
                 switch (platform)
                 {
                     case PlatformType.iPhone:
-                        defaultFormat = TextureImporterFormat.ASTC_RGBA_10x10;
-                        ambientEmissionFormat = TextureImporterFormat.ASTC_RGB_10x10;
-                        normalsFormat = TextureImporterFormat.ASTC_RGBA_6x6;
+                        defaultFormat = TextureImporterFormat.ASTC_10x10;
+                        ambientEmissionFormat = TextureImporterFormat.ASTC_10x10;
+                        normalsFormat = TextureImporterFormat.ASTC_6x6;
                         break;
                     case PlatformType.Standalone:
                         defaultFormat = TextureImporterFormat.DXT5;
