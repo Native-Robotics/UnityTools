@@ -13,7 +13,7 @@ namespace NativeRobotics.Utils.Editor
         private static void OpenWindow() => GetWindow<DrawColliderPreviewWindow>().Show();
 
         [PropertyOrder(0)]
-        [LabelText("Clear")]
+        [LabelText("Clear collider preview")]
         [Button(ButtonSizes.Large), GUIColor(1f, 0.27f, 0.22f)]
         private void OnClearButtonClicked()
         {
@@ -28,18 +28,32 @@ namespace NativeRobotics.Utils.Editor
 
         [PropertyOrder(2)]
         [LabelText("Cube collider preview")]
+        [HorizontalGroup("Cube", 0.9f)]
         [Button(ButtonSizes.Large), GUIColor(0.18f, 0.81f, 0.34f)]
         private void OnCubeColliderPreviewButtonClicked() => DrawColliderPreviewCube(colliderCube);
 
         [PropertyOrder(3)]
+        [LabelText("X")]
+        [HorizontalGroup("Cube", 0.1f)]
+        [Button(ButtonSizes.Large), GUIColor(1f, 0.27f, 0.22f)]
+        private void OnClearCubeColliderPreviewButtonClicked() => ClearColliderPreview(colliderCube);
+
+        [PropertyOrder(4)]
         [LabelText("Sphere collider")]
         [GUIColor(1f, 1f, 1f)]
         [SerializeField] private List<GameObject> colliderSphere;
 
-        [PropertyOrder(4)]
+        [PropertyOrder(5)]
         [LabelText("Sphere collider preview")]
+        [HorizontalGroup("Sphere", 0.9f)]
         [Button(ButtonSizes.Large), GUIColor(0.18f, 0.81f, 0.34f)]
         private void OnSphereColliderPreviewButtonClicked() => DrawColliderPreviewSphere(colliderSphere);
+
+        [PropertyOrder(6)]
+        [LabelText("X")]
+        [HorizontalGroup("Sphere", 0.1f)]
+        [Button(ButtonSizes.Large), GUIColor(1f, 0.27f, 0.22f)]
+        private void OnClearSphereColliderPreviewButtonClicked() => ClearColliderPreview(colliderSphere);
 
         private void DrawColliderPreviewCube(List<GameObject> items)
         {
