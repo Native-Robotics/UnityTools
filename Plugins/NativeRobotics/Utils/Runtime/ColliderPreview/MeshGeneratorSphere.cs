@@ -9,8 +9,8 @@ namespace NativeRobotics.Utils.ColliderPreview
             Init();
 
             var radius = ((Size.x + Size.y + Size.z) / 3) / 2;
-            var latitudeSegments = 16;
-            var longitudeSegments = 16;
+            var latitudeSegments = 6;
+            var longitudeSegments = 6;
 
             int numVertices = (latitudeSegments + 1) * (longitudeSegments + 1);
             Vector3[] vertices = new Vector3[numVertices];
