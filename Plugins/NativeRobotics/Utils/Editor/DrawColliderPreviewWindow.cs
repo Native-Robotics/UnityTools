@@ -64,7 +64,8 @@ namespace NativeRobotics.Utils.Editor
                 if (!item.GetComponent<DrawColliderPreviewCube>())
                 {
                     item.AddComponent<DrawColliderPreviewCube>();
-                    item.AddComponent<MeshGeneratorPreviewCube>();
+                    item.AddComponent<MeshGeneratorCube>();
+                    item.GetComponent<MeshGeneratorCube>().GenerateMesh();
                 }
             }
         }
@@ -76,7 +77,11 @@ namespace NativeRobotics.Utils.Editor
             foreach (var item in items)
             {
                 if (!item.GetComponent<DrawColliderPreviewSphere>())
+                {
                     item.AddComponent<DrawColliderPreviewSphere>();
+                    item.AddComponent<MeshGeneratorCube>();
+                    item.GetComponent<MeshGeneratorCube>().GenerateMesh();
+                }
             }
         }
 
@@ -88,8 +93,8 @@ namespace NativeRobotics.Utils.Editor
                     DestroyImmediate(item.GetComponent<DrawColliderPreviewCube>());
                 if (item.GetComponent<DrawColliderPreviewSphere>())
                     DestroyImmediate(item.GetComponent<DrawColliderPreviewSphere>());
-                if (item.GetComponent<MeshGeneratorPreviewCube>())
-                    DestroyImmediate(item.GetComponent<MeshGeneratorPreviewCube>());
+                if (item.GetComponent<MeshGeneratorCube>())
+                    DestroyImmediate(item.GetComponent<MeshGeneratorCube>());
                 if (item.GetComponent<MeshFilter>())
                     DestroyImmediate(item.GetComponent<MeshFilter>());
             }
