@@ -6,7 +6,7 @@ namespace NativeRobotics.Utils.ColliderPreview
     {
         public override void GenerateMesh()
         {
-            Init();
+            base.GenerateMesh();
 
             var size = Size;
 

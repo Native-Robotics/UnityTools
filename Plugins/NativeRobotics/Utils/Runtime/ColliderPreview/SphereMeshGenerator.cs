@@ -6,7 +6,7 @@ namespace NativeRobotics.Utils.ColliderPreview
     {
         public override void GenerateMesh()
         {
-            Init();
+            base.GenerateMesh();
 
             var radius = ((Size.x + Size.y + Size.z) / 3) / 2;
             var latitudeSegments = 6;

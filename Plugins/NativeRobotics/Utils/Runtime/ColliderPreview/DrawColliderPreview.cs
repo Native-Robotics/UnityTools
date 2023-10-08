@@ -5,12 +5,17 @@ namespace NativeRobotics.Utils.ColliderPreview
     public class DrawColliderPreview : MonoBehaviour
     {
         private Color Color { get; } = Color.green;
+        private bool IsDrawGizmo { get; set; }
         private readonly float _colorAlpha = 0.1f;
         protected Color ColorVolume { get; private set; }
         protected Color ColorWire { get; private set; }
         protected Vector3 LocalPosition { get; private set; }
         protected Vector3 LocalScale { get; private set; }
-        private void OnDrawGizmos() => DrawVolumeCollider();
+        private void OnDrawGizmos()
+        {
+            if (IsDrawGizmo)
+                DrawVolumeCollider();
+        }
 
         protected virtual void DrawVolumeCollider()
         {
@@ -21,5 +26,7 @@ namespace NativeRobotics.Utils.ColliderPreview
             LocalPosition = transforms.localPosition;
             LocalScale = transforms.localScale;
         }
+
+        public void DrawGizmo() => IsDrawGizmo = true;
     }
 }

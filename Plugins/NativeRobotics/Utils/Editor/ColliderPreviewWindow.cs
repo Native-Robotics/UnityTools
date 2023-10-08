@@ -100,9 +100,10 @@ namespace NativeRobotics.Utils.Editor
                 {
                     if (!item.GetComponent<CubeDrawColliderPreview>())
                     {
-                        var cubeCollider = item.AddComponent<CubeDrawColliderPreview>();
+                        var cubeGizmo = item.AddComponent<CubeDrawColliderPreview>();
                         var cubeMesh = item.AddComponent<CubeMeshGenerator>();
                         CreateMesh(cubeMesh);
+                        DrawGizmo(cubeGizmo);
                     }
                 }
             }
@@ -120,9 +121,10 @@ namespace NativeRobotics.Utils.Editor
                 }
                 else
                 {
-                    var sphereCollider = item.AddComponent<SphereDrawColliderPreview>();
+                    var sphereGizmo = item.AddComponent<SphereDrawColliderPreview>();
                     var sphereMesh = item.AddComponent<SphereMeshGenerator>();
                     CreateMesh(sphereMesh);
+                    DrawGizmo(sphereGizmo);
                 }
             }
         }
@@ -161,5 +163,6 @@ namespace NativeRobotics.Utils.Editor
         }
 
         private void CreateMesh(MeshGenerator meshGenerator) => meshGenerator.GenerateMesh();
+        private void DrawGizmo(DrawColliderPreview drawColliderPreview) => drawColliderPreview.DrawGizmo();
     }
 }
