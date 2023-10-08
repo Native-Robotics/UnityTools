@@ -4,7 +4,7 @@ namespace NativeRobotics.Utils.ColliderPreview
 {
     public class DrawColliderPreview : MonoBehaviour
     {
-        private Color Color { get; } = Color.green;
+        protected Color Color { get; set; } = Color.green;
         private bool IsDrawGizmo { get; set; }
         private readonly float _colorAlpha = 0.1f;
         protected Color ColorVolume { get; private set; }

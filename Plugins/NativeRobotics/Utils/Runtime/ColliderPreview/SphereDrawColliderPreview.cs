@@ -6,6 +6,8 @@ namespace NativeRobotics.Utils.ColliderPreview
     {
         protected override void DrawVolumeCollider()
         {
+            Color = Color.blue;
+
             base.DrawVolumeCollider();
 
             Gizmos.color = ColorVolume;

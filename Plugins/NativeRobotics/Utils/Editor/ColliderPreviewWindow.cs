@@ -33,7 +33,7 @@ namespace NativeRobotics.Utils.Editor
         public string cubeMessage = string.Empty;
 
         [PropertyOrder(2)]
-        [LabelText("Cube collider")]
+        [LabelText("Cube collection")]
         [GUIColor(0.18f, 0.51f, 0.34f)]
         [SerializeField]
         private List<GameObject> colliderCube;
@@ -63,7 +63,7 @@ namespace NativeRobotics.Utils.Editor
         public string sphereMessage = string.Empty;
 
         [PropertyOrder(6)]
-        [LabelText("Sphere collider")]
+        [LabelText("Sphere collection")]
         [GUIColor(0.03f, 0.517f, 1f)]
         [SerializeField]
         private List<GameObject> colliderSphere;
