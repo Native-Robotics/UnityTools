@@ -19,7 +19,9 @@ namespace NativeRobotics.Utils.Editor
 
         [PropertyOrder(0)]
         [LabelText("Clear all collider preview")]
-        [Button(ButtonSizes.Large), GUIColor(1f, 0.27f, 0.22f)]
+        [HorizontalGroup("Clear", 0.9f)]
+        [GUIColor(1f, 0.27f, 0.22f)]
+        [Button(ButtonSizes.Large)]
         private void OnClearButtonClicked()
         {
             ClearColliderPreview(colliderCube);
@@ -27,18 +29,25 @@ namespace NativeRobotics.Utils.Editor
         }
 
         [PropertyOrder(1)]
+        [LabelText("X")]
+        [HorizontalGroup("Clear", 0.1f)]
+        [GUIColor(1f, 0.27f, 0.22f)]
+        [Button(ButtonSizes.Large)]
+        private void OnButtonClearCollection() => ClearCollection();
+
+        [PropertyOrder(2)]
         [HideLabel]
         [DisplayAsString]
         [GUIColor(1f, 1f, 0f)]
         public string cubeMessage = string.Empty;
 
-        [PropertyOrder(2)]
+        [PropertyOrder(3)]
         [LabelText("Cube collection")]
         [GUIColor(0.18f, 0.51f, 0.34f)]
         [SerializeField]
         private List<GameObject> colliderCube;
 
-        [PropertyOrder(3)]
+        [PropertyOrder(4)]
         [LabelText("Cube collider preview")]
         [HorizontalGroup("Cube", 0.9f)]
         [GUIColor(0.18f, 0.81f, 0.34f)]
@@ -49,26 +58,26 @@ namespace NativeRobotics.Utils.Editor
             DrawColliderPreviewCube(colliderCube);
         }
 
-        [PropertyOrder(4)]
+        [PropertyOrder(5)]
         [LabelText("X")]
         [HorizontalGroup("Cube", 0.1f)]
         [GUIColor(1f, 0.27f, 0.22f)]
         [Button(ButtonSizes.Large)]
         private void OnClearCubeColliderPreviewButtonClicked() => ClearColliderPreview(colliderCube);
 
-        [PropertyOrder(5)]
+        [PropertyOrder(6)]
         [HideLabel]
         [DisplayAsString]
         [GUIColor(1f, 1f, 0f)]
         public string sphereMessage = string.Empty;
 
-        [PropertyOrder(6)]
+        [PropertyOrder(7)]
         [LabelText("Sphere collection")]
         [GUIColor(0.03f, 0.517f, 1f)]
         [SerializeField]
         private List<GameObject> colliderSphere;
 
-        [PropertyOrder(7)]
+        [PropertyOrder(8)]
         [LabelText("Sphere collider preview")]
         [HorizontalGroup("Sphere", 0.9f)]
         [GUIColor(0.03f, 0.517f, 1f)]
@@ -79,12 +88,18 @@ namespace NativeRobotics.Utils.Editor
             DrawColliderPreviewSphere(colliderSphere);
         }
 
-        [PropertyOrder(7)]
+        [PropertyOrder(9)]
         [LabelText("X")]
         [HorizontalGroup("Sphere", 0.1f)]
         [GUIColor(1f, 0.27f, 0.22f)]
         [Button(ButtonSizes.Large)]
         private void OnClearSphereColliderPreviewButtonClicked() => ClearColliderPreview(colliderSphere);
+
+        private void ClearCollection()
+        {
+            colliderCube.Clear();
+            colliderSphere.Clear();
+        }
 
         private void DrawColliderPreviewCube(List<GameObject> collections)
         {
