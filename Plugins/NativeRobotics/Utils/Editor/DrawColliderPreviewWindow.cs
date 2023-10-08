@@ -9,10 +9,10 @@ namespace NativeRobotics.Utils.Editor
 {
     public class DrawColliderPreviewWindow : OdinEditorWindow
     {
-        private const string TheListIsEmptyMessage = "The list is empty";
-        private const string HasNullMessage = "Has null";
-        private const string CubeListMessage = ", please add Cube colliders and try it again";
-        private const string SphereListMessage = ", please add Sphere colliders and try it again";
+        private const string TheListIsEmptyMessage = "The list is EMPTY";
+        private const string HasNullMessage = "Has NULL";
+        private const string CubeListMessage = ", please add cube colliders and try it again";
+        private const string SphereListMessage = ", please add sphere colliders and try it again";
 
         [MenuItem("Tools/Native Robotics/Draw Collider Preview")]
         private static void OpenWindow() => GetWindow<DrawColliderPreviewWindow>().Show();
@@ -34,7 +34,7 @@ namespace NativeRobotics.Utils.Editor
 
         [PropertyOrder(2)]
         [LabelText("Cube collider")]
-        [GUIColor(1f, 1f, 1f)]
+        [GUIColor(0.18f, 0.51f, 0.34f)]
         [SerializeField]
         private List<GameObject> colliderCube;
 
@@ -64,14 +64,14 @@ namespace NativeRobotics.Utils.Editor
 
         [PropertyOrder(6)]
         [LabelText("Sphere collider")]
-        [GUIColor(1f, 1f, 1f)]
+        [GUIColor(0.03f, 0.517f, 1f)]
         [SerializeField]
         private List<GameObject> colliderSphere;
 
         [PropertyOrder(7)]
         [LabelText("Sphere collider preview")]
         [HorizontalGroup("Sphere", 0.9f)]
-        [GUIColor(0.18f, 0.81f, 0.34f)]
+        [GUIColor(0.03f, 0.517f, 1f)]
         [Button(ButtonSizes.Large)]
         private void OnSphereColliderPreviewButtonClicked()
         {
