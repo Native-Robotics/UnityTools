@@ -7,15 +7,15 @@ using UnityEngine;
 
 namespace NativeRobotics.Utils.Editor
 {
-    public class DrawColliderPreviewWindow : OdinEditorWindow
+    public class ColliderPreviewWindow : OdinEditorWindow
     {
         private const string TheCollectionIsEmptyMessage = "The collection is EMPTY";
         private const string TheCollectionHasNullMessage = "The collection has NULL";
         private const string CubeCollectionMessage = ", please add cube colliders and try it again";
         private const string SphereCollectionMessage = ", please add sphere colliders and try it again";
 
-        [MenuItem("Tools/Native Robotics/Draw Collider Preview")]
-        private static void OpenWindow() => GetWindow<DrawColliderPreviewWindow>().Show();
+        [MenuItem("Tools/Native Robotics/Collider Preview")]
+        private static void OpenWindow() => GetWindow<ColliderPreviewWindow>().Show();
 
         [PropertyOrder(0)]
         [LabelText("Clear all collider preview")]
@@ -98,10 +98,10 @@ namespace NativeRobotics.Utils.Editor
                 }
                 else
                 {
-                    if (!item.GetComponent<DrawColliderPreviewCube>())
+                    if (!item.GetComponent<CubeDrawColliderPreview>())
                     {
-                        var cubeCollider = item.AddComponent<DrawColliderPreviewCube>();
-                        var cubeMesh = item.AddComponent<MeshGeneratorCube>();
+                        var cubeCollider = item.AddComponent<CubeDrawColliderPreview>();
+                        var cubeMesh = item.AddComponent<CubeMeshGenerator>();
                         CreateMesh(cubeMesh);
                     }
                 }
@@ -120,8 +120,8 @@ namespace NativeRobotics.Utils.Editor
                 }
                 else
                 {
-                    var sphereCollider = item.AddComponent<DrawColliderPreviewSphere>();
-                    var sphereMesh = item.AddComponent<MeshGeneratorSphere>();
+                    var sphereCollider = item.AddComponent<SphereDrawColliderPreview>();
+                    var sphereMesh = item.AddComponent<SphereMeshGenerator>();
                     CreateMesh(sphereMesh);
                 }
             }

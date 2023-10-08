@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace NativeRobotics.Utils.ColliderPreview
 {
-    public class MeshGeneratorCube : MeshGenerator, IMeshGenerator
+    public class CubeMeshGenerator : MeshGenerator
     {
-        public new void GenerateMesh()
+        public override void GenerateMesh()
         {
             Init();
 

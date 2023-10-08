@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace NativeRobotics.Utils.ColliderPreview
 {
-    public class DrawColliderPreviewSphere : DrawColliderPreview
+    public class SphereDrawColliderPreview : DrawColliderPreview
     {
         protected override void DrawVolumeCollider()
         {
