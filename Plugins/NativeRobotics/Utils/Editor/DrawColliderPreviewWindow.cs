@@ -45,7 +45,7 @@ namespace NativeRobotics.Utils.Editor
         [Button(ButtonSizes.Large)]
         private void OnCubeColliderPreviewButtonClicked()
         {
-            cubeMessage = CheckItemsList(colliderCube, TheCollectionIsEmptyMessage + CubeCollectionMessage);
+            cubeMessage = CheckItemsCollection(colliderCube, TheCollectionIsEmptyMessage + CubeCollectionMessage);
             DrawColliderPreviewCube(colliderCube);
         }
 
@@ -75,7 +75,7 @@ namespace NativeRobotics.Utils.Editor
         [Button(ButtonSizes.Large)]
         private void OnSphereColliderPreviewButtonClicked()
         {
-            sphereMessage = CheckItemsList(colliderSphere, TheCollectionIsEmptyMessage + SphereCollectionMessage);
+            sphereMessage = CheckItemsCollection(colliderSphere, TheCollectionIsEmptyMessage + SphereCollectionMessage);
             DrawColliderPreviewSphere(colliderSphere);
         }
 
@@ -100,9 +100,9 @@ namespace NativeRobotics.Utils.Editor
                 {
                     if (!item.GetComponent<DrawColliderPreviewCube>())
                     {
-                        item.AddComponent<DrawColliderPreviewCube>();
-                        item.AddComponent<MeshGeneratorCube>();
-                        item.GetComponent<MeshGeneratorCube>().GenerateMesh();
+                        var cubeCollider = item.AddComponent<DrawColliderPreviewCube>();
+                        var cubeMesh = item.AddComponent<MeshGeneratorCube>();
+                        CreateMesh(cubeMesh);
                     }
                 }
             }
@@ -120,12 +120,9 @@ namespace NativeRobotics.Utils.Editor
                 }
                 else
                 {
-                    if (!item.GetComponent<DrawColliderPreviewSphere>())
-                    {
-                        item.AddComponent<DrawColliderPreviewSphere>();
-                        item.AddComponent<MeshGeneratorSphere>();
-                        item.GetComponent<MeshGeneratorSphere>().GenerateMesh();
-                    }
+                    var sphereCollider = item.AddComponent<DrawColliderPreviewSphere>();
+                    var sphereMesh = item.AddComponent<MeshGeneratorSphere>();
+                    CreateMesh(sphereMesh);
                 }
             }
         }
@@ -140,25 +137,29 @@ namespace NativeRobotics.Utils.Editor
                 }
                 else
                 {
-                    if (item.GetComponent<DrawColliderPreviewCube>())
-                        DestroyImmediate(item.GetComponent<DrawColliderPreviewCube>());
-                    if (item.GetComponent<DrawColliderPreviewSphere>())
-                        DestroyImmediate(item.GetComponent<DrawColliderPreviewSphere>());
-                    if (item.GetComponent<MeshGeneratorCube>())
-                        DestroyImmediate(item.GetComponent<MeshGeneratorCube>());
-                    if (item.GetComponent<MeshGeneratorSphere>())
-                        DestroyImmediate(item.GetComponent<MeshGeneratorSphere>());
-                    if (item.GetComponent<MeshFilter>())
-                        DestroyImmediate(item.GetComponent<MeshFilter>());
+                    var components = item.GetComponents<Component>();
+
+                    foreach (var component in components)
+                    {
+                        if (component.GetType() != typeof(Transform))
+                        {
+                            DestroyImmediate(component);
+                        }
+                    }
                 }
             }
         }
 
-        private string CheckItemsList(List<GameObject> collections, string message)
+        private string CheckItemsCollection(List<GameObject> collections, string message)
         {
             if (collections.Count == 0)
+            {
                 return message;
+            }
+
             return string.Empty;
         }
+
+        private void CreateMesh(MeshGenerator meshGenerator) => meshGenerator.GenerateMesh();
     }
 }

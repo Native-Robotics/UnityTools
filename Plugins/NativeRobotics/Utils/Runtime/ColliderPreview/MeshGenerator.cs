@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace NativeRobotics.Utils.ColliderPreview
 {
-    public class MeshGenerator : MonoBehaviour
+    public class MeshGenerator : MonoBehaviour, IMeshGenerator
     {
         private MeshFilter MeshFilter { get; set; }
         protected Mesh Mesh { get; private set; }
@@ -14,5 +14,7 @@ namespace NativeRobotics.Utils.ColliderPreview
             Mesh = new Mesh();
             MeshFilter.mesh = Mesh;
         }
+
+        public void GenerateMesh() => Init();
     }
 }

@@ -4,7 +4,7 @@ namespace NativeRobotics.Utils.ColliderPreview
 {
     public class MeshGeneratorCube : MeshGenerator, IMeshGenerator
     {
-        public void GenerateMesh()
+        public new void GenerateMesh()
         {
             Init();
 
