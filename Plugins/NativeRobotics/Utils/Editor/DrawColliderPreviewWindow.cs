@@ -9,10 +9,10 @@ namespace NativeRobotics.Utils.Editor
 {
     public class DrawColliderPreviewWindow : OdinEditorWindow
     {
-        private const string TheListIsEmptyMessage = "The list is EMPTY";
-        private const string HasNullMessage = "Has NULL";
-        private const string CubeListMessage = ", please add cube colliders and try it again";
-        private const string SphereListMessage = ", please add sphere colliders and try it again";
+        private const string TheCollectionIsEmptyMessage = "The collection is EMPTY";
+        private const string TheCollectionHasNullMessage = "The collection has NULL";
+        private const string CubeCollectionMessage = ", please add cube colliders and try it again";
+        private const string SphereCollectionMessage = ", please add sphere colliders and try it again";
 
         [MenuItem("Tools/Native Robotics/Draw Collider Preview")]
         private static void OpenWindow() => GetWindow<DrawColliderPreviewWindow>().Show();
@@ -45,7 +45,7 @@ namespace NativeRobotics.Utils.Editor
         [Button(ButtonSizes.Large)]
         private void OnCubeColliderPreviewButtonClicked()
         {
-            cubeMessage = CheckItemsList(colliderCube, TheListIsEmptyMessage + CubeListMessage);
+            cubeMessage = CheckItemsList(colliderCube, TheCollectionIsEmptyMessage + CubeCollectionMessage);
             DrawColliderPreviewCube(colliderCube);
         }
 
@@ -75,7 +75,7 @@ namespace NativeRobotics.Utils.Editor
         [Button(ButtonSizes.Large)]
         private void OnSphereColliderPreviewButtonClicked()
         {
-            sphereMessage = CheckItemsList(colliderSphere, TheListIsEmptyMessage + SphereListMessage);
+            sphereMessage = CheckItemsList(colliderSphere, TheCollectionIsEmptyMessage + SphereCollectionMessage);
             DrawColliderPreviewSphere(colliderSphere);
         }
 
@@ -86,70 +86,77 @@ namespace NativeRobotics.Utils.Editor
         [Button(ButtonSizes.Large)]
         private void OnClearSphereColliderPreviewButtonClicked() => ClearColliderPreview(colliderSphere);
 
-        private void DrawColliderPreviewCube(List<GameObject> items)
+        private void DrawColliderPreviewCube(List<GameObject> collections)
         {
             ClearColliderPreview(colliderCube);
 
-            foreach (var item in items)
+            foreach (var item in collections)
             {
                 if (item == null)
                 {
-                    cubeMessage = HasNullMessage + CubeListMessage;
-                    return;
+                    cubeMessage = TheCollectionHasNullMessage + CubeCollectionMessage;
                 }
-
-                if (!item.GetComponent<DrawColliderPreviewCube>())
+                else
                 {
-                    item.AddComponent<DrawColliderPreviewCube>();
-                    item.AddComponent<MeshGeneratorCube>();
-                    item.GetComponent<MeshGeneratorCube>().GenerateMesh();
+                    if (!item.GetComponent<DrawColliderPreviewCube>())
+                    {
+                        item.AddComponent<DrawColliderPreviewCube>();
+                        item.AddComponent<MeshGeneratorCube>();
+                        item.GetComponent<MeshGeneratorCube>().GenerateMesh();
+                    }
                 }
             }
         }
 
-        private void DrawColliderPreviewSphere(List<GameObject> items)
+        private void DrawColliderPreviewSphere(List<GameObject> collections)
         {
             ClearColliderPreview(colliderSphere);
 
-            foreach (var item in items)
+            foreach (var item in collections)
             {
                 if (item == null)
                 {
-                    sphereMessage = HasNullMessage + SphereListMessage;
-                    return;
+                    sphereMessage = TheCollectionHasNullMessage + SphereCollectionMessage;
                 }
-
-                if (!item.GetComponent<DrawColliderPreviewSphere>())
+                else
                 {
-                    item.AddComponent<DrawColliderPreviewSphere>();
-                    item.AddComponent<MeshGeneratorSphere>();
-                    item.GetComponent<MeshGeneratorSphere>().GenerateMesh();
+                    if (!item.GetComponent<DrawColliderPreviewSphere>())
+                    {
+                        item.AddComponent<DrawColliderPreviewSphere>();
+                        item.AddComponent<MeshGeneratorSphere>();
+                        item.GetComponent<MeshGeneratorSphere>().GenerateMesh();
+                    }
                 }
             }
         }
 
-        private void ClearColliderPreview(List<GameObject> items)
+        private void ClearColliderPreview(List<GameObject> collections)
         {
-            foreach (var item in items)
+            foreach (var item in collections)
             {
-                if (item == null) return;
-
-                if (item.GetComponent<DrawColliderPreviewCube>())
-                    DestroyImmediate(item.GetComponent<DrawColliderPreviewCube>());
-                if (item.GetComponent<DrawColliderPreviewSphere>())
-                    DestroyImmediate(item.GetComponent<DrawColliderPreviewSphere>());
-                if (item.GetComponent<MeshGeneratorCube>())
-                    DestroyImmediate(item.GetComponent<MeshGeneratorCube>());
-                if (item.GetComponent<MeshGeneratorSphere>())
-                    DestroyImmediate(item.GetComponent<MeshGeneratorSphere>());
-                if (item.GetComponent<MeshFilter>())
-                    DestroyImmediate(item.GetComponent<MeshFilter>());
+                if (item == null)
+                {
+                    Debug.Log(TheCollectionHasNullMessage);
+                }
+                else
+                {
+                    if (item.GetComponent<DrawColliderPreviewCube>())
+                        DestroyImmediate(item.GetComponent<DrawColliderPreviewCube>());
+                    if (item.GetComponent<DrawColliderPreviewSphere>())
+                        DestroyImmediate(item.GetComponent<DrawColliderPreviewSphere>());
+                    if (item.GetComponent<MeshGeneratorCube>())
+                        DestroyImmediate(item.GetComponent<MeshGeneratorCube>());
+                    if (item.GetComponent<MeshGeneratorSphere>())
+                        DestroyImmediate(item.GetComponent<MeshGeneratorSphere>());
+                    if (item.GetComponent<MeshFilter>())
+                        DestroyImmediate(item.GetComponent<MeshFilter>());
+                }
             }
         }
 
-        private string CheckItemsList(List<GameObject> items, string message)
+        private string CheckItemsList(List<GameObject> collections, string message)
         {
-            if (items.Count == 0)
+            if (collections.Count == 0)
                 return message;
             return string.Empty;
         }
