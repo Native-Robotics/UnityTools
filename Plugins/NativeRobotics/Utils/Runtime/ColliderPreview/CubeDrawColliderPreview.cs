@@ -6,7 +6,7 @@ namespace NativeRobotics.Utils.ColliderPreview
     {
         protected override void DrawVolumeCollider()
         {
-            base.DrawVolumeCollider();
+            Init();
 
             Gizmos.color = ColorWire;
             Gizmos.DrawWireCube(LocalPosition, LocalScale);

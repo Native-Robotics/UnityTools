@@ -8,7 +8,7 @@ namespace NativeRobotics.Utils.ColliderPreview
         {
             Color = Color.blue;
 
-            base.DrawVolumeCollider();
+            Init();
 
             Gizmos.color = ColorVolume;
             Gizmos.DrawSphere(LocalPosition, CalculateAverageSphereRadius(LocalScale));
